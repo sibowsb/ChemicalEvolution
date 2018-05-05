@@ -3,8 +3,12 @@ import sympy as sm
 
 
 class Species:
-    def __init__(self, name, init_amount):
-        self.symbol = sm.Symbol(name)
+    def __init__(self, name, init_amount, symbol=None):
+        self.name = name
+        if symbol is not None:
+            self.symbol = symbol
+        else:
+            self.symbol = sm.Symbol(name)
         self.amount = init_amount
         self.amount_hist = [init_amount]
 
@@ -19,12 +23,12 @@ class Species:
         for rxn in self._find_formation(all_reactions):
             term = rxn.rate_symbol
             for atom in rxn.lhs.atoms():
-                term *= atom.symbol
+                term *= atom
             dSdt += term
         for rxn in self._find_destruction(all_reactions):
             term = - rxn.rate_symbol
             for atom in rxn.lhs.atoms():
-                term *= atom.symbol
+                term *= atom
             dSdt += term
         return dSdt
 

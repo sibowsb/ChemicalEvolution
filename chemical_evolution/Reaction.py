@@ -3,12 +3,11 @@ import numpy as np
 
 
 class Reaction:
-    def __init__(self, lhs, rhs):
+    def __init__(self, lhs, rhs, rate=0, rate_symbol=None):
         self.lhs = lhs
         self.rhs = rhs
-        self.rate_symbol = sm.Symbol('k')
-        self.rate_val = np.nan
-
-    def calc_rate(self, temp):
-        self.rate_val = 0
-        return self.rate_val
+        if rate_symbol is None:
+            self.rate_symbol = sm.Symbol('k')
+        else:
+            self.rate_symbol = rate_symbol
+        self.rate_val = rate
