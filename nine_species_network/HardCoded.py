@@ -4,6 +4,9 @@ from re import findall
 
 
 def calc_rate(T, rx):
+    """
+    Hard-coded equations from the Grackle paper at https://arxiv.org/abs/1610.09591
+    """
     T_eV = T / 11605.
     log_T = np.log(T)
     log_T_eV = np.log(T_eV)
@@ -113,12 +116,20 @@ def calc_rate(T, rx):
         rate = 5e-7 * np.sqrt(100. / T)
 
     else:
+        #==============================================================================
+        # Couldn't find equations for the other reactions in the Grackle source code.
+        # I have looked into `coll_rates_g.F` and `calc_rates_g.F` from 
+        # https://bitbucket.org/grackle/grackle
+        #==============================================================================
         rate = 0 * np.ones_like(T)
 
     return rate
 
 
 def parse_reactions():
+    """
+    Parse reaction info from the Grackle paper at https://arxiv.org/abs/1610.09591
+    """
     source = r'''- ${\rm H + e^{-}} \rightarrow {\rm H^{+} + e^{-} + e^{-}}$
                  - ${\rm H^{+} + e^{-}} \rightarrow {\rm H + \gamma}$
                  - ${\rm He + e^{-}} \rightarrow {\rm He^{+} + e^{-} + e^{-}}$
