@@ -3,6 +3,10 @@ from nine_species_network import *
 
 
 def load_species():
+    """
+    Load the species info as an iterable of name-symbol pairs, where name is the name of the
+    species as a string, and symbol is the sympy symbol for its fraction.
+    """
     all_species = sm.sympify(
         'HI, HII, HM, HeI, HeII, HeIII, H2I, H2II, de, gma, grn'
     )
@@ -11,6 +15,10 @@ def load_species():
 
 
 def load_reactions():
+    """
+    Load the reaction info as an iterable of equation-rate pairs, where equation is the LHS 
+    and the RHS as a tuple, and rate is the sympy symbol for the reaction rate.
+    """
     all_reactions = HardCoded.parse_reactions()
     ks = sm.sympify(
         'k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10, k11, k12, '

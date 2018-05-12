@@ -3,6 +3,9 @@ import numpy as np
 
 
 class Reaction:
+    """
+    This class models each reaction.
+    """
     def __init__(self, lhs, rhs, rate=0, rate_symbol=None):
         self.lhs = lhs
         self.rhs = rhs
